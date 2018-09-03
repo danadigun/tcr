@@ -1,0 +1,61 @@
+<div style="padding-left:20%; padding-right:20%">
+    <h3 class="h3 mb-3 font-weight-normal">Predictive Analytics</h1><hr>
+    
+    {{#if closing_level }}
+         <div class="row">
+            <div class="col-lg-6">
+                <canvas id="myBarChart" height="250"></canvas><br>
+                <span>
+                    Expected Closing Level: <strong>{{ closing_level}}m</strong> <br>
+                    Sales Volume : <strong>{{ sales_volume }}m3</strong>
+                </span>
+            </div>
+            <div class="col-lg-6">
+                <canvas id="myChart" height="250"></canvas><br>
+                <div>
+                    {{#if closing_level }}
+                    <div style="text-align:center">
+                            Probability of loss : <strong>{{ loss }}%</strong><br>
+                            Probability of gain : <strong>{{ gain }}%</strong>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{else}}
+             <p class="alert alert-info">Please enter the following details to predict <strong> expected loss </strong> and <strong>closing tank level</strong> before loading operations</p>
+    {{/if}}
+    {{#if error}} <span>{{error}}</span>{{/if}}
+   <form class="form-signin" method="POST" action="/api/level">
+
+      <div class="form-label-group">
+        <label for="tank">Desired Tank</label>
+        <select name="tank" class="form-control" style="border-radius:0px">
+            <option value="01">01</option>
+            <option value="11">11</option>
+        </select>
+      </div>
+
+      <div class="form-label-group">
+        <input type="number" name="volume" class="form-control" placeholder="Volume to sell (in cubic meters...) " required="" min="0" step="any">
+      </div>
+
+    <div class="form-label-group">
+            <input type="number" name="opening_level" class="form-control" placeholder="opening level (in meters)" required="" min="0" step="any">
+        </div>
+     
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Predict loss</button>
+      <a href="/" class="btn btn-lg btn-default btn-block" >Back</a>
+    </form>
+</div>
+
+<style> 
+    .form-label-group{
+        padding:0.5em;
+    }
+    .form-control, select{
+        border-radius: 0px;
+    }
+</style>
+
+
