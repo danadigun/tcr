@@ -1,4 +1,4 @@
-<div style="padding-left:20%; padding-right:20%">
+<div class="main">
     <h3 class="h3 mb-3 font-weight-normal">Predictive Analytics</h1><hr>
     
     {{#if closing_level }}
@@ -50,11 +50,19 @@
 </div>
 
 <style> 
+    .main{
+        padding-left:20%; padding-right:20%;
+    }
     .form-label-group{
         padding:0.5em;
     }
     .form-control, select{
         border-radius: 0px;
+    }
+    @media screen and (max-width:600px){
+        .main{
+            padding-left:5%; padding-right:5%;
+        }
     }
 </style>
 
